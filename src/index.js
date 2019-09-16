@@ -121,6 +121,7 @@ DateRangePicker.defaultProps = {
 
 DateRangePicker.propTypes = {
   '<input>': PropTypes.any,
+  allowStartAndEndDatesToHaveSameDate: PropTypes.bool,
   alwaysShowCalendars: PropTypes.bool,
   applyClass: PropTypes.string,
   autoApply: PropTypes.bool,

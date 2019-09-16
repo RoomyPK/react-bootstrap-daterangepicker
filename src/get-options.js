@@ -3,6 +3,7 @@
 export default () => {
   return [
     '<input>',
+    'allowStartAndEndDatesToHaveSameDate',
     'alwaysShowCalendars',
     'applyClass',
     'autoApply',
