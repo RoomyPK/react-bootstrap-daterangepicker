@@ -3,6 +3,7 @@
 exports[`get-options 1`] = `
 Array [
   "<input>",
+  "allowStartAndEndDatesToHaveSameDate",
   "alwaysShowCalendars",
   "applyClass",
   "autoApply",
