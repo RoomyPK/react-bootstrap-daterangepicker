@@ -114,16 +114,23 @@ var DateRangePicker = function (_Component) {
       var keys = Object.keys(currentOptions);
       if (this.$picker) {
         if (currentOptions) {
+          if ('locale' in keys) {
+            $.extend(this.$picker.data('daterangepicker')[key], currentOptions[key]);
+            delete keys['locale'];
+          }
+
+          if ('startDate' in keys) {
+            this.$picker.data('daterangepicker').setStartDate(currentOptions[key]);
+            delete keys['startDate'];
+          }
+
+          if ('endDate' in keys) {
+            this.$picker.data('daterangepicker').setEndDate(currentOptions[key]);
+            delete keys['endDate'];
+          }
+
           keys.forEach(function (key) {
-            if (key === 'startDate') {
-              _this3.$picker.data('daterangepicker').setStartDate(currentOptions[key]);
-            } else if (key === 'endDate') {
-              _this3.$picker.data('daterangepicker').setEndDate(currentOptions[key]);
-            } else if (key === 'locale') {
-              $.extend(_this3.$picker.data('daterangepicker')[key], currentOptions[key]);
-            } else {
-              _this3.$picker.data('daterangepicker')[key] = currentOptions[key];
-            }
+            _this3.$picker.data('daterangepicker')[key] = currentOptions[key];
           });
         }
       }
