@@ -37,23 +37,28 @@ export class DateRangePicker extends Component {
     var keys = Object.keys(currentOptions);
     if (this.$picker) {
       if (currentOptions) {
+        if ('locale' in keys) {
+          $.extend(
+            this.$picker.data('daterangepicker')[key],
+            currentOptions[key]
+          );
+          delete keys['locale'];
+        }
+
+        if ('startDate' in keys) {
+          this.$picker
+            .data('daterangepicker')
+            .setStartDate(currentOptions[key]);
+          delete keys['startDate'];
+        }
+
+        if ('endDate' in keys) {
+          this.$picker.data('daterangepicker').setEndDate(currentOptions[key]);
+          delete keys['endDate'];
+        }
+
         keys.forEach(key => {
-          if (key === 'startDate') {
-            this.$picker
-              .data('daterangepicker')
-              .setStartDate(currentOptions[key]);
-          } else if (key === 'endDate') {
-            this.$picker
-              .data('daterangepicker')
-              .setEndDate(currentOptions[key]);
-          } else if (key === 'locale') {
-            $.extend(
-              this.$picker.data('daterangepicker')[key],
-              currentOptions[key]
-            );
-          } else {
-            this.$picker.data('daterangepicker')[key] = currentOptions[key];
-          }
+          this.$picker.data('daterangepicker')[key] = currentOptions[key];
         });
       }
     }
