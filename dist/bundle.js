@@ -111,29 +111,33 @@ var DateRangePicker = function (_Component) {
     value: function setOptionsFromProps(currentOptions) {
       var _this3 = this;
 
-      var keys = Object.keys(currentOptions);
-      if (this.$picker) {
-        if (currentOptions) {
-          if ('locale' in keys) {
-            $.extend(this.$picker.data('daterangepicker')[key], currentOptions[key]);
-            delete keys['locale'];
-          }
-
-          if ('startDate' in keys) {
-            this.$picker.data('daterangepicker').setStartDate(currentOptions[key]);
-            delete keys['startDate'];
-          }
-
-          if ('endDate' in keys) {
-            this.$picker.data('daterangepicker').setEndDate(currentOptions[key]);
-            delete keys['endDate'];
-          }
-
-          keys.forEach(function (key) {
-            _this3.$picker.data('daterangepicker')[key] = currentOptions[key];
-          });
-        }
+      if (currentOptions == null || this.$picker == null) {
+        return;
       }
+
+      var key = 'locale';
+      if (key in currentOptions) {
+        $.extend(this.$picker.data('daterangepicker')[key], currentOptions[key]);
+        delete currentOptions[key];
+      }
+
+      key = 'startDate';
+      if (key in currentOptions) {
+        this.$picker.data('daterangepicker').setStartDate(currentOptions[key]);
+        delete currentOptions[key];
+      }
+
+      key = 'endDate';
+      if ('endDate' in currentOptions) {
+        this.$picker.data('daterangepicker').setEndDate(currentOptions[key]);
+        delete currentOptions[key];
+      }
+
+      var keys = Object.keys(currentOptions);
+
+      keys.forEach(function (key) {
+        _this3.$picker.data('daterangepicker')[key] = currentOptions[key];
+      });
     }
   }, {
     key: 'componentWillReceiveProps',
