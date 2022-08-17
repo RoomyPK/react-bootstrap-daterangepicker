@@ -44,6 +44,17 @@ export class DateRangePicker extends Component {
       delete currentOptions[key];
     }
 
+    // Along with 'locale' above, 'minDate' and 'maxDate' options must be set before 'startDate' and 'endDate' as well.
+    var _keys = ['minDate', 'maxDate'];
+    var _count = _keys.length;
+    for (var _i = 0; _i < _count; ++_i) {
+      key = _keys[_i];
+      if (key in currentOptions) {
+        this.$picker.data('daterangepicker')[key] = currentOptions[key];
+        delete currentOptions[key];
+      }
+    }
+
     key = 'startDate';
     if (key in currentOptions) {
       this.$picker.data('daterangepicker').setStartDate(currentOptions[key]);
@@ -159,6 +170,7 @@ DateRangePicker.propTypes = {
   showWeekNumbers: PropTypes.bool,
   singleDatePicker: PropTypes.bool,
   startDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  startDateEnabled: PropTypes.bool,
   template: PropTypes.any,
   timePicker: PropTypes.bool,
   timePickerIncrement: PropTypes.number,

@@ -28,6 +28,7 @@ export default () => {
     'showWeekNumbers',
     'singleDatePicker',
     'startDate',
+    'startDateEnabled',
     'template',
     'timePicker',
     'timePicker24Hour',

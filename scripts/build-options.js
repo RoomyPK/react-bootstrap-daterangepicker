@@ -16,8 +16,9 @@ const buildOptions = () => {
     })
     .get();
   // add options that aren't documented
-  options.push('template');
   options.push('allowStartAndEndDatesToHaveSameDate');
+  options.push('startDateEnabled');
+  options.push('template');
   // de-dupe and sort
   options = options
     .filter(function(item, index) {
